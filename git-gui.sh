@@ -1,4 +1,7 @@
 #!/bin/sh
+
+set pwd [ pwd ]
+
 # Tcl ignores the next line -*- tcl -*- \
  if test "z$*" = zversion \
  || test "z$*" = z--version; \
@@ -874,7 +877,7 @@ proc apply_config {} {
 		if {$use_ttk} {
 			set NS ttk
 			bind [winfo class .] <<ThemeChanged>> [list InitTheme]
-			pave_toplevel .
+			toplevel .pave
 		}
 	}
 }
@@ -1055,7 +1058,7 @@ You are using [git-version]:
 ##
 ## configure our library
 
-set idx [file join $oguilib tclIndex]
+set idx [file join $oguilib $pwd/lib/tclIndex]
 if {[catch {set fd [open $idx r]} err]} {
 	catch {wm withdraw .}
 	tk_messageBox \
